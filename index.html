@@ -29,8 +29,21 @@
     // ❗ Notes
     // 🧠 Try using destructuring to grab a reference to the first element of the array
     // 🧠 Try using the at method of arrays to grab the last element
-    const swapper = () => {
+    const swapper = (array) => {
+          if(array.length < 2) return 'No swap performed';
+          if(array.length === 2){
+            let [first,second] = array;
+            return [second,first]
 
+          };
+          if(array.length === 3){
+            let [first,second,third] = array;
+            return [third,second,first]
+          }
+          if(array.length === 4){
+            let [first,second,third,fourth] = array;
+            return [fourth,second,third, first]
+          }
     }
 
     // 👉 CHALLENGE 2
@@ -46,7 +59,19 @@
     // 🧠 Try using the ternary operator instead of a conditional statement when deciding what to return.
     // 🧠 So instead of doing `if ('foo') return 'bar' else return 'baz'` do `return 'foo' ? 'bar' : 'baz'`
     // 🧠 The above recommendations allow to write the whole function body in just two clean lines!
-    const headAndTail = () => {
+    const headAndTail = (array) => {
+    //   let arr = [];
+    //   let [head, ...tail] = array;
+    //   if(!array.length){
+    //     return 'This array is empty'
+    //   } else{
+    //     arr.push(head,tail)
+    //   }
+
+    // return arr
+
+    let [head, ...tail] = array;
+    return !array.length ? 'This array is empty': [head,tail]
 
     }
 
@@ -59,8 +84,13 @@
     // devGreet(false, false) // should return "Hey, I am a backend dev and I am sad"
     // ❗ Notes
     // 🧠 Use ternary expressions to construct the string.
-    const devGreet = () => {
-
+    const devGreet = (isFrontend,isHappy) => {
+       if(isFrontend){
+        return isHappy ? `Hey, I am a frontend dev and I am happy`: `Hey, I am a frontend dev and I am sad`
+       }
+       if(!isFrontend){
+        return isHappy ? `Hey, I am a backend dev and I am happy`: `Hey, I am a backend dev and I am sad`
+       }
     }
 
     // 👉 CHALLENGE 4
@@ -72,8 +102,8 @@
     // recognize({}) // should return "Hidden Person Rocks!"
     // ❗ Notes
     // 🧠 Try using destructuring to grab the name, and a return followed by a ternary expression.
-    const recognize = () => {
-
+    const recognize = (object) => {
+       return object.name ? `${object.name} Rules!`: `Hidden Person Rocks!`
     }
 
     // 👉 CHALLENGE 5
@@ -83,8 +113,8 @@
     // processBooleans([1, 0, 0, 1, 0]) // should return ["Y", "N", "N", "Y", "N"]
     // ❗ Notes
     // 🧠 Using map, arrow function syntax, and the ternary, you can make this function a short one-liner
-    const processBooleans = () => {
-
+    const processBooleans = (array) => {
+      return  array.map(el => el === 1 ? el = "Y": el = 'N')
     }
 
     // 👉 CHALLENGE 6
@@ -97,8 +127,14 @@
     // 🧠 Split the string but do not use the reverse method of arrays. Let's do it manually.
     // 🧠 We suggest using a for loop. Research how to loop backwards over an array, starting at the last element.
     // 🧠 Use a ternary in the return statement.
-    const reverseString = () => {
-
+    const reverseString = (string) => {
+          let split = string.split('');
+          let result = [];
+          for(let i = split.length; i >= 0; i--){
+           result.push(split[i])
+          }
+          let newWord = result.join('')
+          return string === newWord ? "It's a palindrome!": newWord
     }
 
     // 👉 CHALLENGE 7
@@ -113,9 +149,31 @@
     // ❗ Notes
     // 🧠 Even though object properties have no particular order, to avoid confusing
     // the test runner, please set in each object first name, then age, and finally jsLover.
-    const zip = () => {
-
-    }
+    const zip = (names, years, booleans) => {
+      let result = [];
+      names.forEach((name,index) =>{
+        person = {
+           name :name,
+           born :years[index],
+           jsLover: booleans[index]
+        }
+        result.push(person)
+    })
+    return result
+  }
+    // let newArr = [];
+    //     let obj = {};
+    //     for(let name of names){
+    //       obj.name = name;
+    //     }
+    //     for(let born of years){
+    //       obj.born = born
+    //     }
+    //     for(let jsLover of booleans){
+    //       obj.jsLover = jsLover
+    //     }
+    //     newArr.push(obj);
+    //     console.log(newArr)
 
     // 🧪 TESTS, do not work below this line
     // 🧪 TESTS, do not work below this line
